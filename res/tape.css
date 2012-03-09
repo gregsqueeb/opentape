@@ -13,7 +13,7 @@ a:hover {text-decoration:underline;}
 #controls a:active{-webkit-box-shadow:inset 0px 0px 1px 0px #000000;-moz-box-shadow:inset 0px 0px 1px 0px #000000;box-shadow:inset 0px 0px 1px 0px #000000;}
 #current-song .clock, #current-song strong, #total-progress{float:left;}
 #current-song .info{margin: 0 auto;width:275px;}
-#current-song .name{text-align:center;}
+#current-song .name{height:20px;overflow:hidden;text-align:center;}
 #next{background:#fff url('../res/fastforward.png') no-repeat center center;}
 #next, #previous{height:35px;margin: 17px 10px 0;width:35px;}
 #previous{background:#fff url('../res/rewind.png') no-repeat center center;}
