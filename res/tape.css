@@ -14,14 +14,14 @@ a:hover {text-decoration:underline;}
 #current-song .clock, #current-song strong, #total-progress{float:left;}
 #current-song .info{margin: 0 auto;width:275px;}
 #current-song .name{text-align:center;}
-#next{background:#fff url('/res/fastforward.png') no-repeat center center;}
+#next{background:#fff url('../res/fastforward.png') no-repeat center center;}
 #next, #previous{height:35px;margin: 17px 10px 0;width:35px;}
-#previous{background:#fff url('/res/rewind.png') no-repeat center center;}
+#previous{background:#fff url('../res/rewind.png') no-repeat center center;}
 #total-progress{background:#000;height:20px;margin:0 10px;position:relative;width:200px;}
 #total-progress, #progress{-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
 #progress{background:#fff;height:20px;position:absolute;width:10%;}
-#toggle.pause{background:#fff url('/res/pause.png') no-repeat center center;}
-#toggle.play{background:#fff url('/res/play.png') no-repeat center center;}
+#toggle.pause{background:#fff url('../res/pause.png') no-repeat center center;}
+#toggle.play{background:#fff url('../res/play.png') no-repeat center center;}
 
 .banner{color:#fff;height:60px;left:0;padding:0 20px;position:fixed;top:0;width:100%;z-index:5;}
 .banner#current-song{-webkit-border-top-left-radius: 20px;
