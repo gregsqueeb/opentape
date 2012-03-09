@@ -9,8 +9,32 @@ body {color:#111;background:#fff;font:13px/1.6em Helvetica, "Lucida Grande", "Tr
 a {color:#005AC8;text-decoration:none;}
 a:hover {text-decoration:underline;}
 
+#controls{margin:10px auto;overflow:hidden;width:180px;}
+#controls a:active{-webkit-box-shadow:inset 0px 0px 1px 0px #000000;-moz-box-shadow:inset 0px 0px 1px 0px #000000;box-shadow:inset 0px 0px 1px 0px #000000;}
+#current-song .clock, #current-song strong, #total-progress{float:left;}
+#current-song .info{margin: 0 auto;width:275px;}
+#current-song .name{text-align:center;}
+#next{background:#fff url('/res/fastforward.png') no-repeat center center;}
+#next, #previous{height:35px;margin: 17px 10px 0;width:35px;}
+#previous{background:#fff url('/res/rewind.png') no-repeat center center;}
+#total-progress{background:#000;height:20px;margin:0 10px;position:relative;width:200px;}
+#total-progress, #progress{-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
+#progress{background:#fff;height:20px;position:absolute;width:10%;}
+#toggle.pause{background:#fff url('/res/pause.png') no-repeat center center;}
+#toggle.play{background:#fff url('/res/play.png') no-repeat center center;}
+
 .banner{color:#fff;height:60px;left:0;padding:0 20px;position:fixed;top:0;width:100%;z-index:5;}
+.banner#current-song{-webkit-border-top-left-radius: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-topleft: 20px;
+-moz-border-radius-topright: 20px;
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;bottom:0;height:130px;left:50%;margin: 0 0 0 -140px;padding:10px;top:auto;width:280px;}
+.banner#current-song a{float:left;}
+.banner#current-song #toggle{height:50px;padding:10px;width:50px;}
+
 .banner a{color:#fff;text-decoration:underline;}
+.circle{background:#fff;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;display:block;}
 .flag h1{font-size:16px;font-weight:700;margin:10px 0 0;}
 .flag h2 {font-weight:400;}
 .flash_player {position:absolute;top:0;left:-5555px;overflow:hidden;}
@@ -33,3 +57,5 @@ li.song:hover{background:#eee;}
 
 .green {color:#393;}
 .grey {color:#555;}
+.light-grey{color:#ccc;}
+.white{color:#fff;}

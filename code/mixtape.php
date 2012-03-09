@@ -68,6 +68,7 @@
 			<li class="song" id="song<?php echo $i; ?>">
 			<div class="name">
 				<?php
+
 					if (isset($row['opentape_artist']) && !empty($row['opentape_artist'])) { echo $row['opentape_artist'] . " - "; } 
 					elseif (!isset($row['opentape_artist']) && isset($row['artist'])) { echo $row['artist'] . " - "; } 
 					
@@ -105,7 +106,28 @@
 		</div>
 				
 		</div>
-		
+		<div class="banner" id="current-song">
+			<div class="name">
+		        <?php
+                    $row = $songlist_struct[key($songlist_struct)];
+					if (isset($row['opentape_artist']) && !empty($row['opentape_artist'])) { echo $row['opentape_artist'] . " - "; } 
+					elseif (!isset($row['opentape_artist']) && isset($row['artist'])) { echo $row['artist'] . " - "; } 
+					
+					if (isset($row['opentape_title'])) { echo $row['opentape_title']; }
+					else { echo $row['title']; }
+				?>
+		    </div>
+			<div id="controls">
+		    	<a id="previous" class="circle"></a>
+				<a id="toggle" class="circle play" song="0"></a>
+				<a id="next" class="circle"></a>
+			</div>
+		    <div class="info">
+			   	<div class="clock">0:00</div>
+				<div id="total-progress"><div id="progress"></div></div>
+				<div><strong><?php echo $row['playtime_string']; ?></strong></div>
+			</div>
+		</div>
 	<script type="text/javascript">
 		
 		var openPlaylist=new Array(); // build track array, do it in this sequence so files detected as missing in the load-scan are not included

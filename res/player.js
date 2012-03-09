@@ -24,6 +24,13 @@ window.debug = function(q,w,e,r){
 function event_init() {
 
     // assign all the right events
+
+    // Events for the Global Controls
+    $$('#next').addEvent('click', function(){ nextTrack() })
+    $$('#previous').addEvent('click', function(){ previousTrack() })
+    $$('#toggle').addEvent('click', function(){ togglePlayback(String($$('#toggle').get('song'))) })
+    
+    // Events for the Playlist Controls
     for(i = 0; i < openPlaylist.length; i++) {
     	var trackEntry = $('song'+i);
     	if(trackEntry) {
@@ -188,20 +195,30 @@ var Base64 = {
 function togglePlayback(id) {
 
 	id = parseInt(id.replace(/song/,''));
+	currentClock = $$('#current-song .clock');
+	currentItem = $('#current-song');
 	songClock = $$('#song'+currentTrack+' .clock');
-	songItem = $('song'+currentTrack); 
+	songItem = $('song'+currentTrack);
+	$$('#toggle').set('song', id);
 	
 	if (id == currentTrack && typeof(currentTrack)!='undefined') { 
 		if(playerStatus == "PAUSED") {
+			$$('#toggle').set('class', 'circle pause');
+		    currentClock.removeClass('light-grey');
+		    currentClock.addClass('white');
 			songClock.removeClass('grey');
 			songClock.addClass('green');
 			playerObj[0].resume();
 		} else {
+			$$('#toggle').set('class', 'circle play');
+		    currentClock.removeClass('white');
+		    currentClock.addClass('light-grey');
 			songClock.removeClass('green');
 			songClock.addClass('grey');	
 			playerObj[0].pause();
 		}
 	} else {
+		$$('#toggle').set('class', 'circle pause');
 	    cleanTrackDisplay(currentTrack);
 		currentTrack = id;
 		playTrack();
@@ -235,7 +252,7 @@ function playTrack() {
         }); 
 	}
 	catch(err) { debug('Cant create sound: ' + err.description ); }  
-
+	
     setupTrackDisplay(currentTrack);
 
 }
@@ -263,8 +280,6 @@ function loadNextTrack() {
         }); 
     }
     catch(err) { debug('Cant create sound: ' + err.description ); }  
-
-
 }
 
 
@@ -306,28 +321,52 @@ function nextTrack() {
 
 }
 
+function previousTrack() {
+	
+	if (openPlaylist[(currentTrack-1)]) {
+	    cleanTrackDisplay(currentTrack);
+		currentTrack--;
+		playTrack(); 
+		return true;
+	} else { 
+		return false;
+	}
+
+}
+
 function cleanTrackDisplay(id) {
 
     if (typeof(id)=='undefined') { return false; }
 	songClock = $$('#song'+id+' .clock');
 	songItem = $('song'+id);
-
+    currentClock = $$('#current-song .clock');
+    
+    currentClock.set('html','0:00');	
 	songItem.removeClass('hilite');		
 	songClock.set('html','');
 
 }
 
 function setupTrackDisplay(id) {
-
+    $$('#controls .current-song').set('id','song'+id)
 	songClock = $$('#song'+id+' .clock');
+	currentClock = $$('#current-song .clock');
 	songItem = $('song'+id);
 
+    $$('#toggle').set('song', currentTrack);
+    currentClock.removeClass('light-grey');
+    currentClock.addClass('white');
 	songClock.removeClass('grey');
 	songClock.addClass('green');
 	songClock.set('html', '&mdash;');
 	songItem.addClass('hilite');
 				
 	var name = String($$('#song'+ id +' .name').get('html'));
+	var totalTime = String($$('#song'+ id +' .info strong').get('html'));
+	
+	$$('#current-song .name').set('html', name);
+	$$('#current-song .info strong').set('html', totalTime.replace(',',''));
+	
 	name = name.replace('&amp;','&');
 	document.title = '\u25BA ' + name.trim() + " / " + pageTitle;		
 
@@ -356,9 +395,13 @@ function sm_whileplaying() {
 		var min_formatted = min ? min+':' : '0:';
 		var sec_formatted = sec < 10 ? '0'+sec : sec;
 		string = min_formatted + sec_formatted;
-	
+		// Crazy math here so that it can start with 10% or just the little circle to start with
+	    var percent = (player_position / player_duration)*100*.9+10;
+		$$('#progress').set('style', 'width:'+percent+'%;');
+        currentSong = $$('#current-song .clock');
 		songClock = $$('#song'+currentTrack+' .clock');
 		songClock.set('html', string);
+		currentSong.set('html', string)
 		currentPos = player_position;
 
         debug ((player_duration - player_position) + "sec remaining");
