@@ -353,8 +353,8 @@ function sm_whileplaying() {
 		var string = '';
 		var sec = player_position % 60;
 		var min = (player_position - sec) / 60;
-		var min_formatted = min ? min+':' : '';
-		var sec_formatted = min ? (sec < 10 ? '0'+sec : sec) : sec;
+		var min_formatted = min ? min+':' : '0:';
+		var sec_formatted = sec < 10 ? '0'+sec : sec;
 		string = min_formatted + sec_formatted;
 	
 		songClock = $$('#song'+currentTrack+' .clock');
