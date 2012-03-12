@@ -50,6 +50,7 @@
 		
 		<script type="text/javascript" src="<?php echo $REL_PATH; ?>res/mootools-core-1.3-yc.js"></script>
 		<script type="text/javascript" src="<?php echo $REL_PATH; ?>res/mootools-more-1.3-yc.js"></script>
+		<script type="text/javascript" src="<?php echo $REL_PATH; ?>res/jscolor.js"></script>
 		<script type="text/javascript" src="<?php echo $REL_PATH; ?>res/statusfader.js"></script>
 		<script type="text/javascript" src="<?php echo $REL_PATH; ?>res/upload.js"></script>
 		
@@ -82,7 +83,7 @@
                         <label for="caption">Caption:</label>
                         <input type="text" id="caption" maxlength="255" size="55" value='<?php if (!empty($prefs_struct['caption'])) { echo escape_for_inputs($prefs_struct['caption']); } ?>' /><br />
                         <label for="moo_color_input">Color:</label>
-                        <input type="text" id="color_input" value='<?php if(!empty($prefs_struct['color'])) { echo $prefs_struct['color']; } else { echo constant("DEFAULT_COLOR"); } ?>' style="background:#<?php if(!empty($prefs_struct['color'])) { echo $prefs_struct['color']; } else { echo constant("DEFAULT_COLOR"); } ?>;" size="6" maxlength="6" /> <input type="button" id="color_reset_button" value="Reset" /> <a style="vertical-align:top;" href="http://ficml.org/jemimap/style/color/wheel.html" target="_new">(online color wheel)</a><br />
+                        <input type="text" id="color_input" class="color" value='<?php if(!empty($prefs_struct['color'])) { echo $prefs_struct['color']; } else { echo constant("DEFAULT_COLOR"); } ?>' style="background:#<?php if(!empty($prefs_struct['color'])) { echo $prefs_struct['color']; } else { echo constant("DEFAULT_COLOR"); } ?>;" size="6" maxlength="6" /> <input type="button" id="color_reset_button" value="Reset" /><br />
                         <input  id="banner_button" type="button" class="save" value="Save" />
                     </form>	
                 </div>
@@ -306,7 +307,6 @@
 				}
 				return true;
 			}
-			
 			</script>
 	</body>
 </html>
