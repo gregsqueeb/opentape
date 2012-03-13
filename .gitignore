@@ -3,3 +3,5 @@
 .htpasswd
 settings/*.array
 settings/*.php
+
+opentape.esproj/user.Greg.espressostorage

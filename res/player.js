@@ -307,30 +307,26 @@ function fadeOutSound(soundObj,amount) {
   setTimeout(function(){fadeOutSound(soundObj,amount)},300);
 }
 
-
-function nextTrack() {
-	
-	if (openPlaylist[(currentTrack+1)]) {
+function changeTrack(i){
+	if (openPlaylist[(currentTrack+i)]) {
 	    cleanTrackDisplay(currentTrack);
-		currentTrack++; 
+		currentTrack = currentTrack+i; 
 		playTrack(); 
 		return true;
 	} else { 
 		return false;
 	}
+}
+
+function nextTrack() {
+	
+	changeTrack(1);
 
 }
 
 function previousTrack() {
 	
-	if (openPlaylist[(currentTrack-1)]) {
-	    cleanTrackDisplay(currentTrack);
-		currentTrack--;
-		playTrack(); 
-		return true;
-	} else { 
-		return false;
-	}
+	changeTrack(-1);
 
 }
 
